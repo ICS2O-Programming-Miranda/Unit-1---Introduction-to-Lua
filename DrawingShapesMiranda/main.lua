@@ -32,11 +32,22 @@ myPentagon.anchorY = 0
 myPentagon.X = 600
 myPentagon.Y = 600
 
+-- set border of shapes
+myPentagon.strokeWidth = 20
+
+-- set colour of pentagram
+myPentagon:setFillColor(157/255, 228/255, 233/255)
+
+--set color of the border
+myPentagon:setStrokeColor(153/255, 204/255, 255/255)
+
 --display my trapazoid
-myTrapazoid = display.newPolygon(600, 600, verticesTrapazoid)
+myTrapazoid = display.newPolygon(10, 200, verticesTrapazoid)
 
 --anchor my trapazoid
 myTrapazoid.anchorX = 0
 myTrapazoid.anchorY = 0
-myTrapazoid.X = 500
-myTrapazoid.Y = 40
+myTrapazoid.X = 600
+myTrapazoid.Y = 600
+
+
