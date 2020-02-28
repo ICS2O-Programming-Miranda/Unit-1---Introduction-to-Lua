@@ -5,12 +5,16 @@
 -----------------------------------------------------------------------------------------
 
 -- create my local variables 
-local verticesPentagon = {0, 45, 30, 0, 20,-60, -20, -60, -30, 0}
-local verticesTrapazoid = {-30,55, 30, 55, 20, -30, -20, -30}
-local verticesTriangle = {20, 50, 20, -20, -40, -20}
-local verticesHexagon = {20, -45, 20, 45, 40, 0, 20, -45, -20, -45, -40, 0}
+local verticesPentagon = {7, 145, 130, 10, 120,-160, -120, -160, -130, 10}
+local verticesTrapazoid = {-130,155, 130, 155, 120, -130, -120, -130}
+local verticesTriangle = {120, 150, 120, -120, -140, -120}
+local verticesHexagon = {120, -145, 120, 145, 140, 10, 120, -145, -120, -145, -140, 10}
 local halfW = display.contentWidth/4
 local halfH = display.contentHeight/4
+local myPentagon
+local myTrapazoid
+local myTriangle
+local myHexagon
 
 --hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
@@ -18,3 +22,21 @@ display.setStatusBar(display.HiddenStatusBar)
 --set the background colour
 display.setDefault("background", 250/255, 128/255, 114/255)
 
+--display my pentagon
+myPentagon = display.newPolygon(10, 300, verticesPentagon)
+myPentagon:scale (1, -1)
+
+--anchor pentagon
+myPentagon.anchorX = 0 
+myPentagon.anchorY = 0
+myPentagon.X = 600
+myPentagon.Y = 600
+
+--display my trapazoid
+myTrapazoid = display.newPolygon(600, 600, verticesTrapazoid)
+
+--anchor my trapazoid
+myTrapazoid.anchorX = 0
+myTrapazoid.anchorY = 0
+myTrapazoid.X = 500
+myTrapazoid.Y = 40
