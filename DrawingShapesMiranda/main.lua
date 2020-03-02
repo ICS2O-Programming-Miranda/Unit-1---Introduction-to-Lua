@@ -67,7 +67,7 @@ myTriangle:scale(1, -1)
 --anchor my triangle
 myTriangle.anchorX = 0
 myTriangle.anchorY = 0
-.. myTriangle.X = 30
+myTriangle.X = 30
 myTriangle.Y = 30
 
 --set border of triangle
@@ -80,10 +80,6 @@ myTriangle:setStrokeColor(102/255, 153/255, 255/255)
 --calculate the area of the triangle 
 areaOfTriangle = triangleHeight * triangleWidth/2
 
---write the area on the screen 
-areaText = display.newText("The area of this rectangle with a width of \n "
- .. triangleWidth .. " and the height of " .. triangleHeight .. " is " ..
-  areaOfTriangle .. " pixels²." , 0, 0, Arial, textSize)
 --display my hexagon 
 myHexagon = display.newPolygon(600, 400, verticesHexagon)
 
