@@ -2,7 +2,6 @@
 --Name:Miranda.B
 --Course:ICS20
 --This program display Hello,World
---terminal
 -----------------------------------------------------------------------------------------
 
 -- Your code here
