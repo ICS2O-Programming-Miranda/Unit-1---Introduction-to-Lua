@@ -37,28 +37,19 @@ myPentagon.anchorY = 0
 myPentagon.X = 600
 myPentagon.Y = 600
 
-<<<<<<< HEAD
--- set border of shapes
-=======
 -- set border of pentagram
->>>>>>> 8bbf4b05c0ad7203f02c7cde9fac6a16a3688506
+
 myPentagon.strokeWidth = 20
 
 -- set colour of pentagram
 myPentagon:setFillColor(157/255, 228/255, 233/255)
-<<<<<<< HEAD
 
 --set color of the border
 myPentagon:setStrokeColor(153/255, 204/255, 255/255)
 
 --display my trapazoid
-myTrapazoid = display.newPolygon(10, 200, verticesTrapazoid)
-=======
-myPentagon:setStrokeColor(153/255, 204/255, 255/255)
+myTrapazoid = display.newPolygon(600, 10, verticesTrapazoid)
 
---display my trapazoid
-myTrapazoid = display.newPolygon(600, 20, verticesTrapazoid)
->>>>>>> 8bbf4b05c0ad7203f02c7cde9fac6a16a3688506
 
 --anchor my trapazoid
 myTrapazoid.anchorX = 0
@@ -66,9 +57,6 @@ myTrapazoid.anchorY = 0
 myTrapazoid.X = 600
 myTrapazoid.Y = 600
 
-<<<<<<< HEAD
-
-=======
 -- set border of trapazoid
 myTrapazoid.strokeWidth = 20
 
@@ -111,4 +99,3 @@ myHexagon.strokeWidth = 20
 --set colour of hexagon
 myHexagon:setFillColor(176/255, 245/255, 151/255)
 myHexagon:setStrokeColor(58/255, 238/255, 58/255)
->>>>>>> 8bbf4b05c0ad7203f02c7cde9fac6a16a3688506
