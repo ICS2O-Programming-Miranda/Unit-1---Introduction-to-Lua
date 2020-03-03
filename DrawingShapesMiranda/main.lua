@@ -50,7 +50,6 @@ myPentagon:setStrokeColor(153/255, 204/255, 255/255)
 --display my trapazoid
 myTrapazoid = display.newPolygon(600, 10, verticesTrapazoid)
 
-
 --anchor my trapazoid
 myTrapazoid.anchorX = 0
 myTrapazoid.anchorY = 0
