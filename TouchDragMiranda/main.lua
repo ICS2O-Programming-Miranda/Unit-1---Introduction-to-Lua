@@ -53,7 +53,31 @@ end
 -- add the respective listener to each object
 girl2:addEventListener("touch", Girl2Listener)
 		
+--Funtion:Girl4Listener
+--Input: touch listener
+--Output: none
+--Description: wen girl4 is touched, move her
+local function Girl4Listener(touch)
+	if (touch.phase == "began") then
+		if(alreadyTouchedGirl2 == false) then 
+			alreadyTouchedGirl4 = true
+		end
+	end 
 
+	if ( (touch.phase == "moved") and (alreadyTouchedGirl4 == true) ) then
+		girl4.x = touch.x
+		girl4.y = touch.y
+	end 
+
+	if (touch.phase == "ended") then
+		alreadyTouchedGirl4 = false
+		alreadyTouchedGirl2 = false
+	end 
+end 
+
+-- add the respective listener to each object
+girl4:addEventListener("touch", Girl4Listener)
+		
 
 
 
