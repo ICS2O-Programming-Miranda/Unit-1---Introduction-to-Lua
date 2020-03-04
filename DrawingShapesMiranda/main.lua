@@ -53,7 +53,7 @@ myPentagon:setFillColor(157/255, 228/255, 233/255)
 myPentagon:setStrokeColor(153/255, 204/255, 255/255)
 
 --label my pentagram
-areaTextPentagon = display.newText("Pentagram", 150,200, Arial,textSize)
+areaTextPentagon = display.newText("Pentagon", 150,200, Arial,textSize)
 
 --colour the text 
 areaTextPentagon:setTextColor (0/255, 0/255, 0/255)
