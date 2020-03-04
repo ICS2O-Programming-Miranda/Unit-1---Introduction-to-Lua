@@ -39,3 +39,30 @@ end
 
 --MoveShip will be called over and over again
 Runtime:addEventListener("enterFrame", MoveShip)
+
+--second character image with width and height
+local star = display.newImageRect("images/star.png", 200, 200)
+
+--set star to full colour
+star.alpha = 1
+
+--set the initial x and y position for star
+star.x = 1024
+star.y = display.contentHeight/3
+star:scale(-1,1)
+
+--Function: MoveStar
+--Input: this function accepts an event listener
+--Output: none
+--Description: This function adds the scroll speed to the x-value of the ship
+local function MoveStar(event)
+	--add the scroll speed to the x-value of the star
+	star.x = star.x - scrollSpeed
+	--Change the transparency of the star every time it moves so that it fades out
+	star.alpha = star.alpha - 0.00001
+	--make it grow as it moves across the screen
+	star:scale(1.005, 1.005)
+end
+
+--star will be called over and over again
+Runtime:addEventListener("enterFrame", MoveStar)
