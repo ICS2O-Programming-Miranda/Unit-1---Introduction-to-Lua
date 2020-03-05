@@ -17,16 +17,24 @@ local girl4 = display.newImageRect("Images/girl4.png", 150, 150)
 local girl4Width = girl4.width
 local girl4Height = girl4.height
 
+local star = display.newImageRect("Images/star.png", 200, 200)
+local starWidth = star.width
+local starHeight = star.heigt
+
 -- my boolean variabloes 
 local alreadyTouchedGirl2 = false
 local alreadyTouchedGirl4 = false
+local alreadyTouchedStar = false
 
 -- set the initial x and y position of image
-girl2.x = 400
+girl2.x = 500
 girl2.y = 400
 
-girl4.x = 600
+girl4.x = 700
 girl4.y = 400
+
+star.x = 300
+star.y = 400
 
 --Funtion:Girl2Listener
 --Input: touch listener
@@ -78,7 +86,30 @@ end
 -- add the respective listener to each object
 girl4:addEventListener("touch", Girl4Listener)
 		
+--Funtion:StarListener
+--Input: touch listener
+--Output: none
+--Description: when the star is touched, move it
+local function StarListener(touch)
+	if (touch.phase == "began") then
+		if(alreadyTouchedGirl2 == false) then 
+			alreadyTouchedStar = true
+		end
+	end 
 
+	if ( (touch.phase == "moved") and (alreadyTouchedStar == true) ) then
+		star.x = touch.x
+		star.y = touch.y
+	end 
+
+	if (touch.phase == "ended") then
+		alreadyTouchedStar = false
+		alreadyTouchedGirl2 = false
+	end 
+end 
+
+-- add the respective listener to each object
+star:addEventListener("touch", StarListener)
 
 
 
