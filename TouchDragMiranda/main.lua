@@ -39,7 +39,7 @@ star.y = 400
 --Funtion:Girl2Listener
 --Input: touch listener
 --Output: none
---Description: wen girl2 is touched, move her
+--Description: when girl2 is touched, move her
 local function Girl2Listener(touch)
 	if (touch.phase == "began") then
 		if(alreadyTouchedGirl4 == false) then 
