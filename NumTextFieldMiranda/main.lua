@@ -26,6 +26,8 @@ local randomNumber2
 local userAnswer
 local correctAnswer
 local incorrectanswer
+local points = 0
+local pointsText
 
 ------------------------------------------------------------------------------------------
 --LOCAL FUNCATIONS
@@ -47,6 +49,11 @@ local function HideCorrect ()
 	AskQuestion()
 end 
 
+local function HideIncorrect()
+	incorrectObject.isVisible = false
+	AskQuestion()
+end
+
 local function NumericFieldlistener( event )
 	-- user begins editing "numerisField"
 	if (event.phase == "began" ) then
@@ -59,17 +66,13 @@ local function NumericFieldlistener( event )
 		-- when the answer is submitted (enter key is pressed) set user input to user's answer
 		userAnswer = tonumber(event.target.text)
 
-		--if the users answer and the correct answer are the same:
-		if (userAnswer == correctAnswer) then 
+		--if the user answers and the correct answer are then same:
+		if (userAnswer == correctAnswer) then
 			correctObject.isVisible = true
-			timer.performWithDelay(3000 ,HideCorrect)
-		else
-			incorrectObject.isVisible = true
-			timer.performWithDelay(3000, HideCorrect) 
-
-			numericField = nil 
-
-
+			timer.performWithDelay(3000, HideCorrect)
+		else 
+			incorrectObject.isVisible = true 
+			timer.performWithDelay(3000, HideIncorrect)
 		end
 	end
 
@@ -82,13 +85,13 @@ end
  questionObject = display.newText ( "" , display.contentWidth/2, display.contentHeight/2, nil, 70)
  questionObject:setTextColor(214/255, 185/255, 15/255)
 
- --create the correct text object and make it invisible
-correctObject = display.newText("Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-correctObject:setTextColor(224/255, 255/255, 255/255)
+-- create the correct text object and make it invisible
+correctObject = display.newText("Correct!", display.contentWidth/2, display.contentHeight*1/3, nil, 50)
+correctObject:setTextColor(139/255, 225/255, 176/255)
 correctObject.isVisible = false
 
 --create the incorrect text object and make it invisible
-incorrectObject = display.newText("Incorrect" , display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+incorrectObject = display.newText("Incorrect" , display.contentWidth/2, display.contentHeight*1/3, nil, 50)
 incorrectObject:setTextColor(255/255, 0/255, 0/255)
 incorrectObject.isVisible = false
 
@@ -98,6 +101,9 @@ numericField.inputType = "number"
 
 --add the event listener for th numeric field
 numericField:addEventListener( "userInput" , NumericFieldlistener)
+
+--display the amount of points as a text object
+pointsText = display.newText("Points = " .. points, display.contentWidth*1/4, display.contentHeight*1/4, nil, 50)
 
 ------------------------------------------------------------------------------------------
 --FUNCTION CALLS
