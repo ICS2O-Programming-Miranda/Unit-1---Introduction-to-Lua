@@ -28,6 +28,10 @@ local correctAnswer
 local incorrectanswer
 local points = 0
 local pointsText
+local wrongAnswers
+local wrongAnswersText
+local youWin
+local gameOver
 
 ------------------------------------------------------------------------------------------
 --LOCAL FUNCATIONS
@@ -70,13 +74,23 @@ local function NumericFieldlistener( event )
 		if (userAnswer == correctAnswer) then
 			correctObject.isVisible = true
 			timer.performWithDelay(3000, HideCorrect)
+			-- give a point if user gets the correct answer
+			points = points + 1 
+
+			-- update it in the display object
+			pointsText.text = "Points = " .. points
 		else 
 			incorrectObject.isVisible = true 
 			timer.performWithDelay(3000, HideIncorrect)
 		end
+
+			--clear text field
+		event.target.text = ""
 	end
 
 end
+
+
 ----------------------------------------------------------------------------------------
 --OBJECT CREATION
 ----------------------------------------------------------------------------------------
@@ -104,6 +118,11 @@ numericField:addEventListener( "userInput" , NumericFieldlistener)
 
 --display the amount of points as a text object
 pointsText = display.newText("Points = " .. points, display.contentWidth*1/4, display.contentHeight*1/4, nil, 50)
+
+--display the "You Win" text object and make it invisible 
+
+
+
 
 ------------------------------------------------------------------------------------------
 --FUNCTION CALLS
