@@ -24,14 +24,15 @@ local NumericTextFields
 local randomNumber1
 local randomNumber2
 local userAnswer
-local correctAnswer
+local correctAnswer 
 local incorrectanswer
 local points = 0
 local pointsText
-local wrongAnswers
+local wrongAnswers = 0
 local wrongAnswersText
 local youWin
 local gameOver
+local correctAnswerText
 
 ------------------------------------------------------------------------------------------
 --LOCAL FUNCATIONS
@@ -82,14 +83,41 @@ local function NumericFieldlistener( event )
 		else 
 			incorrectObject.isVisible = true 
 			timer.performWithDelay(3000, HideIncorrect)
+
+			--give a point to wrong answer
+			wrongAnswers = wrongAnswers + 1 
+
+			--update the "Wrong Answer" text object
+			wrongAnswersText.text = "Wrong Answers = " .. wrongAnswers
+
 		end
 
-			--clear text field
+	  	--clear text field
 		event.target.text = ""
+
+	if (points == 5) then
+		--clear the screen
+		display.remove(questionObject)
+		display.remove(numericField)
+		display.remove(pointsText)
+		display.remove(wrongAnswersText)
+		--display the "You Win" image
+		youWin.isVisible = true
+	end
+
+	if (wrongAnswers == 3) then
+		--clear the screen
+		display.remove(questionObject)
+		display.remove(numericField)
+		display.remove(pointsText)
+		display.remove(wrongAnswersText)
+		--display the "Game Over" image
+		gameOver.isVisible = true
+	end
+
 	end
 
 end
-
 
 ----------------------------------------------------------------------------------------
 --OBJECT CREATION
@@ -119,9 +147,20 @@ numericField:addEventListener( "userInput" , NumericFieldlistener)
 --display the amount of points as a text object
 pointsText = display.newText("Points = " .. points, display.contentWidth*1/4, display.contentHeight*1/4, nil, 50)
 
---display the "You Win" text object and make it invisible 
+-- display the amount of wrong answers
+wrongAnswersText = display.newText("Wrong Answers = " .. wrongAnswers, display.contentWidth*3/4, display.contentHeight*1/4, nil, 50)
 
+--display the "You Win" image and make it invisible 
+youWin = display.newImageRect("Images/youwin.png", 1024, 768)
+youWin.x = display.contentWidth/2
+youWin.y = display.contentHeight/2
+youWin.isVisible = false
 
+--display "Game Over" images and make it invisible
+gameOver = display.newImageRect("Images/gameover.png", 1024, 768)
+gameOver.x = display.contentWidth/2
+gameOver.y = display.contentHeight/2
+gameOver.isVisible = false
 
 
 ------------------------------------------------------------------------------------------
