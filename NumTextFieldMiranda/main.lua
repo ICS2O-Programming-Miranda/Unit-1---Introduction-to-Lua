@@ -101,6 +101,7 @@ local function NumericFieldlistener( event )
 		display.remove(numericField)
 		display.remove(pointsText)
 		display.remove(wrongAnswersText)
+		display.remove(correctObject)
 		--display the "You Win" image
 		youWin.isVisible = true
 	end
@@ -111,6 +112,7 @@ local function NumericFieldlistener( event )
 		display.remove(numericField)
 		display.remove(pointsText)
 		display.remove(wrongAnswersText)
+		display.remove(incorrectObject)
 		--display the "Game Over" image
 		gameOver.isVisible = true
 	end
@@ -161,7 +163,6 @@ gameOver = display.newImageRect("Images/gameover.png", 1024, 768)
 gameOver.x = display.contentWidth/2
 gameOver.y = display.contentHeight/2
 gameOver.isVisible = false
-
 
 ------------------------------------------------------------------------------------------
 --FUNCTION CALLS
