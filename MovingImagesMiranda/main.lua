@@ -35,6 +35,16 @@ local function MoveShip(event)
 	beetleship.x = beetleship.x + scrollSpeed
 	--chnage the transparency of the ship every time it moves so that it fades in
 	beetleship.alpha = beetleship.alpha + 0.01
+	
+	------------------------------------------------------------------------
+	--SOUNDS
+	------------------------------------------------------------------------
+	--local backgroundSound = audio.loadSound("Sounds/Background noise.mp3")
+	--local backgroundSoundChannel 
+	--play background sound
+	--backgroundSoundChannel = audio.play(backgroundSound)
+	--timer.performWithDelay(1000, background)
+
 end 
 
 --MoveShip will be called over and over again
