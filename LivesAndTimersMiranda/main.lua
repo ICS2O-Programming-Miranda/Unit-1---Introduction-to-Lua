@@ -1,10 +1,8 @@
------------------------------------------------------------------------------------------
--- Title: MathFun
+-------------------------------------------------------------------------------------
+-- Title: Lives and Timers
 -- Name: Miranda
 -- Course: ICS2O
--- This program asks the user a random addition,subtraction,multiplication, division questions. 
---all division questions are rounded to 1 decimal place. If the user gets the answer correct or 
---incorrect it tells them so.
+-- This program...
 -----------------------------------------------------------------------------------------
 
 -- 
@@ -12,7 +10,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- set default background
-display.setDefault("background", 220/255, 20/255, 60/255)
+display.setDefault("background", 175/255, 238/255, 238/255)
 
 ------------------------------------------------------------------------------------------
 --LOCAL VARIABLES
@@ -29,6 +27,18 @@ local randomOperator
 local userAnswer
 local correctAnswer
 local incorrectanswer
+local totalSeconds = 10
+local secondsLeft = 10
+local clockText 
+local countDownTimer
+local lives = 4
+local heart1
+local heart2
+local heart3
+local heart4
+local poiontsObject
+local points = 0
+local gameOver
 
 --------------------------------------------------------------------------------------------
 --SOUNDS
@@ -135,6 +145,38 @@ local function NumericFieldlistener( event )
 	end
 end
 
+local function UpdateTime()
+	-- decrement the number of seconds
+	secondsLeft = secondsLeft - 1
+
+	--display the number of seconds left in the clock object
+	clockText.text = secondsLeft .. ""
+
+	if (secondsLeft == 0 ) then 
+		--reset the number of seconds left
+		secondsLeft = totalSeconds
+		lives = lives - 1
+
+		if (lives == 3) then 
+			heart4.isVisible = false
+		elseif (lives == 2) then 
+			heart3.isVisible = false
+		elseif (lives == 1) then
+			heart2.isVisible = false
+		elseif (lives == 0) then
+			heart1.isVisible = false
+		end
+
+		AskQuestion()
+	end
+
+end
+
+-- function that calls the timer
+local function StartTimer()
+	-- create a countdown timer that loops infinitely
+	countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+end
 
 ----------------------------------------------------------------------------------------
 --OBJECT CREATION
@@ -142,7 +184,7 @@ end
  
  --displays a question and set the colour
  questionObject = display.newText ( "" , display.contentWidth/2, display.contentHeight/2, nil, 70)
- questionObject:setTextColor(214/255, 185/255, 15/255)
+ questionObject:setTextColor(185/255, 149/255, 201/255)
 
 -- create the correct text object and make it invisible
 correctObject = display.newText("Correct!", display.contentWidth/2, display.contentHeight*1/3, nil, 50)
@@ -160,8 +202,31 @@ numericField.inputType = "number"
 
 --add the event listener for th numeric field
 numericField:addEventListener( "userInput" , NumericFieldlistener)
+
+--display the amount of time on the screen
+clockText = display.newText("Time Left: " .. secondsLeft, display.contentWidth*2/8, display.contentHeight*1/7, nil, 50)
+clockText:setTextColor(185/255, 149/255, 201/255)
+
+--create the lives to display on the screen
+heart1 = display.newImageRect("Images/cactus.png", 120, 120)
+heart1.x = display.contentWidth*7/8
+heart1.y = display.contentHeight*1/7
+
+heart2 = display.newImageRect("Images/cactus.png", 120, 120)
+heart2.x = display.contentWidth*6/8
+heart2.y = display.contentHeight*1/7
+
+heart3 = display.newImageRect("Images/cactus.png", 120, 120)
+heart3.x = display.contentWidth*5/8
+heart3.y = display.contentHeight*1/7
+
+heart4 = display.newImageRect("Images/cactus.png", 120, 120)
+heart4.x = display.contentWidth*4/8
+heart4.y = display.contentHeight*1/7
+
 ------------------------------------------------------------------------------------------
 --FUNCTION CALLS
 -----------------------------------------------------------------------------------------
 -- call the function to ask the question
 AskQuestion()
+UpdateTime()
