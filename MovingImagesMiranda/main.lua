@@ -25,6 +25,17 @@ beetleship.alpha = 0
 beetleship.x = 0
 beetleship.y = display.contentHeight/2
 
+------------------------------------------------------------------------
+	--SOUNDS
+------------------------------------------------------------------------
+local backgroundSound = audio.loadSound("Sounds/Background noise.mp3")
+local backgroundSoundChannel 
+--play background sound
+backgroundSoundChannel = audio.play(backgroundSound)
+timer.performWithDelay(1000, background)
+
+
+
 --Function: MoveShip
 --Input: this function accepts an event listener
 --Output: none
