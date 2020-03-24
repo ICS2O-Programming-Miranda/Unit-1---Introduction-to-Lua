@@ -2,7 +2,9 @@
 -- Title: MathFun
 -- Name: Miranda
 -- Course: ICS2O
--- This program...
+-- This program asks the user a random addition,subtraction,multiplication, division questions. 
+--all division questions are rounded to 1 decimal place. If the user gets the answer correct or 
+--incorrect it tells them so.
 -----------------------------------------------------------------------------------------
 
 -- 
@@ -27,6 +29,22 @@ local correctAnswer
 local incorrectanswer
 local randomOperator
 local incorrectObject
+
+--------------------------------------------------------------------------------------------
+--SOUNDS
+--------------------------------------------------------------------------------------------
+--create the background music 
+local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3")
+local bkgMusicChannel
+bkgMusicChannel = audio.play(bkgMusic)
+
+--create the correct sound
+local correctSound = audio.loadSound("Sounds/correctSound.mp3")
+local correctSoundChannel
+
+-- create the incorrect sound
+local incorrectSound = audio.loadSound("Sounds/wrongSound.mp3")
+local incorrectSoundChannel
 
 ------------------------------------------------------------------------------------------
 --LOCAL FUNCATIONS
@@ -88,7 +106,6 @@ local function HideIncorrect()
 	AskQuestion()
 end
 
-
 local function NumericFieldlistener( event )
 	-- user begins editing "numerisField"
 	if (event.phase == "began" ) then
@@ -105,19 +122,19 @@ local function NumericFieldlistener( event )
 		if (userAnswer == correctAnswer) then
 			correctObject.isVisible = true
 			timer.performWithDelay(3000, HideCorrect)
-		
+			correctSoundChannel = audio.play(correctSound)
+			
 		else 
 			incorrectObject.isVisible = true 
 			timer.performWithDelay(3000, HideIncorrect)
-
+			incorrectSoundChannel = audio.play(incorrectSound)
 		end
 
-	  	--clear text field
+		--clear text field
 		event.target.text = ""
-
 	end
-
 end
+
 
 ----------------------------------------------------------------------------------------
 --OBJECT CREATION
@@ -125,17 +142,17 @@ end
  
  --displays a question and set the colour
  questionObject = display.newText ( "" , display.contentWidth/2, display.contentHeight/2, nil, 70)
- questionObject:setTextColor(0/255, 206/255, 209/255)
+ questionObject:setTextColor(214/255, 185/255, 15/255)
 
- --create the correct text object and make it invisible
-correctObject = display.newText("Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-correctObject:setTextColor(50/255, 205/255, 50/255)
+-- create the correct text object and make it invisible
+correctObject = display.newText("Correct!", display.contentWidth/2, display.contentHeight*1/3, nil, 50)
+correctObject:setTextColor(139/255, 225/255, 176/255)
 correctObject.isVisible = false
 
 --create the incorrect text object and make it invisible
-incorrectObject = display.newText("Incorrect" , display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-incorrectObject:setTextColor(255/255, 69/255, 0/255)
-incorrectObject.isVisible = true
+incorrectObject = display.newText("Incorrect" , display.contentWidth/2, display.contentHeight*1/3, nil, 50)
+incorrectObject:setTextColor(255/255, 0/255, 0/255)
+incorrectObject.isVisible = false
 
 --create numeric field
 numericField = native.newTextField (display.contentWidth/2, display.contentHeight*2/3 , 200, 100)
@@ -143,7 +160,6 @@ numericField.inputType = "number"
 
 --add the event listener for th numeric field
 numericField:addEventListener( "userInput" , NumericFieldlistener)
-
 ------------------------------------------------------------------------------------------
 --FUNCTION CALLS
 -----------------------------------------------------------------------------------------
