@@ -27,15 +27,15 @@ local randomOperator
 local userAnswer
 local correctAnswer
 local incorrectanswer
-local totalSeconds = 10
-local secondsLeft = 10
+local totalSeconds = 11
+local secondsLeft = 11
 local clockText 
 local countDownTimer
 local lives = 4
-local heart1
-local heart2
-local heart3
-local heart4
+local cactus1
+local cactus2
+local cactus3
+local cactus4
 local poiontsObject
 local points = 0
 local gameOver
@@ -138,6 +138,7 @@ local function NumericFieldlistener( event )
 			incorrectObject.isVisible = true 
 			timer.performWithDelay(3000, HideIncorrect)
 			incorrectSoundChannel = audio.play(incorrectSound)
+
 		end
 
 		--clear text field
@@ -158,16 +159,21 @@ local function UpdateTime()
 		lives = lives - 1
 
 		if (lives == 3) then 
-			heart4.isVisible = false
+			cactus4.isVisible = false
 		elseif (lives == 2) then 
-			heart3.isVisible = false
+			cactus3.isVisible = false
 		elseif (lives == 1) then
-			heart2.isVisible = false
+			cactus2.isVisible = false
 		elseif (lives == 0) then
-			heart1.isVisible = false
+			cactus1.isVisible = false
+			questionObject.isVisible = false
+			numericField.isVisible = false
+			clockText.isVisible = false
+			gameOver.isVisible = true
 		end
 
 		AskQuestion()
+
 	end
 
 end
@@ -208,21 +214,27 @@ clockText = display.newText("Time Left: " .. secondsLeft, display.contentWidth*2
 clockText:setTextColor(185/255, 149/255, 201/255)
 
 --create the lives to display on the screen
-heart1 = display.newImageRect("Images/cactus.png", 120, 120)
-heart1.x = display.contentWidth*7/8
-heart1.y = display.contentHeight*1/7
+cactus1 = display.newImageRect("Images/cactus.png", 120, 120)
+cactus1.x = display.contentWidth*7/8
+cactus1.y = display.contentHeight*1/7
 
-heart2 = display.newImageRect("Images/cactus.png", 120, 120)
-heart2.x = display.contentWidth*6/8
-heart2.y = display.contentHeight*1/7
+cactus2 = display.newImageRect("Images/cactus.png", 120, 120)
+cactus2.x = display.contentWidth*6/8
+cactus2.y = display.contentHeight*1/7
 
-heart3 = display.newImageRect("Images/cactus.png", 120, 120)
-heart3.x = display.contentWidth*5/8
-heart3.y = display.contentHeight*1/7
+cactus3 = display.newImageRect("Images/cactus.png", 120, 120)
+cactus3.x = display.contentWidth*5/8
+cactus3.y = display.contentHeight*1/7
 
-heart4 = display.newImageRect("Images/cactus.png", 120, 120)
-heart4.x = display.contentWidth*4/8
-heart4.y = display.contentHeight*1/7
+cactus4 = display.newImageRect("Images/cactus.png", 120, 120)
+cactus4.x = display.contentWidth*4/8
+cactus4.y = display.contentHeight*1/7
+
+--create the "Game Over" screen
+gameOver = display.newImageRect("Images/gameover.png", 500, 500)
+gameOver.x = display.contentWidth/2
+gameOver.y = display.contentHeight/2
+gameOver.isVisible = false
 
 ------------------------------------------------------------------------------------------
 --FUNCTION CALLS
@@ -230,3 +242,4 @@ heart4.y = display.contentHeight*1/7
 -- call the function to ask the question
 AskQuestion()
 UpdateTime()
+StartTimer()
