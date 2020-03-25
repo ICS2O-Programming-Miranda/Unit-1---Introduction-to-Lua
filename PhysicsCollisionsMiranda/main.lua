@@ -2,7 +2,9 @@
 -- Title: PhysicsAndCollisions
 -- Name: Miranda.b
 -- Course: ICS2O
--- This program...
+-- This program has objects that fall and collide with the ground. I added
+-- extra objects and modified the location and angle of the beam. I also 
+--added added background music.
 -----------------------------------------------------------------------------------------
 
 -- display status bar
