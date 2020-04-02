@@ -2,7 +2,8 @@
 -- Title: TouchAndReact
 -- Name: Miranda
 -- Course: ICS2O
--- This program...
+-- This program displays a button that when it is clicked it changes and says "Clicked!".
+-- It also plays a noise when the button is clicked.
 -----------------------------------------------------------------------------------------
 
 -- set background colour
