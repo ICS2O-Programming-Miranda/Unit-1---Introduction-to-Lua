@@ -30,6 +30,7 @@ local userAnswer
 local correctAnswer
 local incorrectanswer
 
+
 --------------------------------------------------------------------------------------------
 --SOUNDS
 --------------------------------------------------------------------------------------------
@@ -88,6 +89,7 @@ local function AskQuestion()
 		correctAnswer = randomNumber1/randomNumber2
 
 		--round the answer
+		correctAnswer = correctAnswer * 100
 		math.round(correctAnswer)
 
 		-- create question in text object 
