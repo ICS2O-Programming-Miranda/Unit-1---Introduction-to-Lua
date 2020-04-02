@@ -164,6 +164,8 @@ gameOver.x = display.contentWidth/2
 gameOver.y = display.contentHeight/2
 gameOver.isVisible = false
 
+-- create the correct answr text
+correctAnswerText = display.newText("The correct answer is " .. correctAnswer)
 ------------------------------------------------------------------------------------------
 --FUNCTION CALLS
 -----------------------------------------------------------------------------------------
